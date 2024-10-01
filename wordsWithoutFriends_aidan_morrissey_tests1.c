@@ -11,6 +11,20 @@ int main(int argc, char **argv)
 	initialization();
 	gameLoop();
 	tearDown();
+	
+	//Tests
+	//getLetterDistribution() Test
+	/*int dist[26];
+	char* test1 = "FWOGGYY";
+	TestDist(test1,dist);
+	getLetterDistribution(dist, test1);
+	TestDist(test1,dist);*/
+	
+	//compareCounts() test
+	/*char* testWord = "CATANOAR";
+	char* testCandidate = "ZZZZ";
+	if(!compareCounts(testWord,testCandidate))
+		printf("Test passed\n");*/
 
 	return 0;
 }
@@ -20,6 +34,7 @@ int initialization()
 	srand(time(NULL));
 	return 0;
 }
+//Returns if the program is done
 bool isDone()
 {
 	return true;
@@ -83,7 +98,10 @@ bool compareCounts(char* inputWord, char* candidate)
 		{
 			if(candidate[i] == newWord[j])
 			{
-				//Removes letter from newWord to ensure the 
+				//Sets to lowercase letter since it's not a capital letter, but if set to '\0' 
+				//the program would end when this spot in the array is iterated over again
+				//TODO: Problem child
+				//inputWord[j] = 'a';
 				removeLetter(newWord, j);
 				found = true;
 			}
@@ -102,7 +120,6 @@ void TestDist(char *str, int *dist)
 		printf("%d",dist[i]);
 	printf("\n");
 }
-//Removes the character from str at index
 char *removeLetter(char* str, int index)
 {
 	char dest[stringLen(str)-1];
@@ -112,7 +129,6 @@ char *removeLetter(char* str, int index)
 		dest[i] = str[i+1];
 	return dest;
 }
-//Local version of strlen() because I was getting errors
 int stringLen(char* str)
 {
 	int i = 0;
